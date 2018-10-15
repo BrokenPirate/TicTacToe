@@ -1,42 +1,101 @@
-class BoardCases
-  #TO DO : la classe a 1 attr_accessor, une array qui contient les BoardCases
-  attr_accessor :cases, :player_name_1, :player_name_2
+class Board
 
-  def initia (player_name_1, player_name_2)
+  attr_accessor :cells, :choice
+
+  include Enumerable
+  #TO DO : la classe a 1 attr_accessor, une array qui contient les BoardCases
+
+
+  def initialize
     #TO DO :
     #Quand la classe s'initialize, elle doit créer 9 instances BoardCases
     #Ces instances sont rangées dans une array qui est l'attr_accessor de la classe
-    @player_name_1 = player_name_1.to_i
-    @player_name_2 = player_name_2.to_i
-    @cases = {"c1" => " ", "c2" => " ", "c3" => " ", "c4" => " ", "c5" => " ", "c6" => " ", "c7" => " ", "c8" => " ", "c9" => " "}
+
+    cell_1 = BoardCase.new(1, "1")
+    cell_2 = BoardCase.new(2, "2")
+    cell_3 = BoardCase.new(3, "3")
+    cell_4 = BoardCase.new(4, "4")
+    cell_5 = BoardCase.new(5, "5")
+    cell_6 = BoardCase.new(6, "6")
+    cell_7 = BoardCase.new(7, "7")
+    cell_8 = BoardCase.new(8, "8")
+    cell_9 = BoardCase.new(9, "9")
+    @cells = [cell_1, cell_2, cell_3, cell_4, cell_5, cell_6, cell_7, cell_8, cell_9]
+
   end
 
-  def to_aisse
+  def show
   #TO DO : afficher le plateau
 
-  puts "    1      2      3                                              "        
-  puts "A   #{@cases["c1"]}  |   #{@cases["c2"]}   |   #{@cases["c3"]}   "
-  puts " ______|_______|_______"
-  puts "B   #{@cases["c4"]}  |   #{@cases["c5"]}   |   #{@cases["c6"]}   "
-  puts " ______|_______|_______"
-  puts "C   #{@cases["c7"]}  |   #{@cases["c8"]}   |   #{@cases["c9"]}   "
-  puts "       |       |       "
+    puts "\n     |     |     "
+    puts "  #{cells[0].value}  |  #{cells[1].value}  |  #{cells[2].value}  "
+    puts "_____|_____|_____"
+    puts "     |     |     "
+    puts "  #{cells[3].value}  |  #{cells[4].value}  |  #{cells[5].value}  "
+    puts "_____|_____|_____"
+    puts "     |     |     "
+    puts "  #{cells[6].value}  |  #{cells[7].value}  |  #{cells[8].value}  "
+    puts "     |     |     "
+
+
+
   end
 
   def play
-    
-    puts "C'est ton tour #{player_name_1}, choisis une case (ex: A2)"
-     val = gets.chomp
-     val.downcase
+    #TO DO : une méthode qui change la BoardCase jouée en fonction de la valeur du joueur (X, ou O)
+
+# Player_choice = 1..9
+# if cell playable ?
+#  if current_player.player_team == "X"
+#   @cell[choice (between 1..9)].value = "X"
+#  else 
+#   @cell[choice].value = "O"
+#  end
+# else
+# Choose another cell 
+# Repeat method
+
+
+
+# cell playable ?
+# -> cell value different from X / O ?
+# -> Cell free
+# -> Else -> cell not free
 
   end
+                         
 
-  def victory?
+ 
+
+
     #TO DO : qui gagne ?
+  def victory(player)                                                               # Recense toutes les conditions de victoire (8 au total)
+
+    if @cells[0].value == @cells[1].value && @cells[1].value == @cells[2].value
+      return true
+
+    elsif @cells[3].value == @cells[4].value && @cells[4].value == @cells[5].value
+      return true
+
+    elsif @cells[6].value == @cells[7].value && @cells[7].value == @cells[8].value
+      return true
+
+    elsif @cells[0].value == @cells[3].value && @cells[3].value == @cells[6].value
+      return true
+
+    elsif @cells[1].value == @cells[4].value && @cells[4].value == @cells[7].value
+      return true
+
+    elsif @cells[2].value == @cells[5].value && @cells[5].value == @cells[8].value
+      return true
+
+    elsif @cells[2].value == @cells[4].value && @cells[4].value == @cells[6].value
+      return true
+
+    elsif @cells[0].value == @cells[4].value && @cells[4].value == @cells[8].value
+      return true
+
+    end
   end
 end
 
-board = BoardCases.new
-board.initia
-board.to_aisse
-board.play
