@@ -6,10 +6,10 @@ class Game
     
             puts "Player 1 will be playing X -> Whats Player 1 name ?"
             # Creer joueur 1
-            @player1 = Player.new(@player_name, "x")
+            @player1 = Player.new(@player_name, "X")
             puts "Player 2 will be playing O -> Whats Player 2 name ?"
             # Creer joueur 2
-            @player2 = Player.new(@player_name, "o")
+            @player2 = Player.new(@player_name, "O")
             puts "#{@player1.player_name} will play X"
             puts "#{@player2.player_name} will play O"
             
