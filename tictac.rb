@@ -1,8 +1,7 @@
-# require 'color_text'
-require_relative 'Classes/Board'      
-require_relative 'Classes/BoardCase'
-require_relative 'Classes/Game'
-require_relative 'Classes/Player'
+require_relative 'Classes/player'
+require_relative 'Classes/game'
+require_relative 'Classes/board'
+require_relative 'Classes/boardcase'
 
-game = Game.new       
-game.go               
+newgame = Game.new
+newgame.go
