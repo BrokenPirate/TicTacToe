@@ -6,8 +6,7 @@ class BoardCase
   
     def initialize(name, value)
         #TO DO doit régler sa valeur, ainsi que son numéro de cell
-    	@index_cell = name.to_i
-    	@value = value
+
  	 end
   
  	 def to_s

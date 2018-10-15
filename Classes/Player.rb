@@ -8,9 +8,6 @@ attr_accessor :player_name, :player_team
     #TO DO : doit régler son nom, sa valeur, son état de victoire
     def initialize(player_name, player_team)
 
-    	@player_name = gets.chomp
-    	@player_team = ""
-
     end
   
 end
