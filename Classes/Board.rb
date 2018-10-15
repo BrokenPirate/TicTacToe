@@ -45,7 +45,7 @@ class Board
     #TO DO : une méthode qui change la BoardCase jouée en fonction de la valeur du joueur (X, ou O)      
            player_choice = gets.chomp.to_i
             if player_choice.between?(1..9)
-              if cell_playable ?
+              if cell_playable?
                 if current_player.player_team == "X"
                 cell[choice].value = "X"
                 else
