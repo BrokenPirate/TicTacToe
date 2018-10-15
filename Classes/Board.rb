@@ -41,27 +41,48 @@ class Board
 
   end
 
-  def play
-    #TO DO : une méthode qui change la BoardCase jouée en fonction de la valeur du joueur (X, ou O)
+  def play(choice, player_team, player)
+    #TO DO : une méthode qui change la BoardCase jouée en fonction de la valeur du joueur (X, ou O)      
+           player_choice = gets.chomp.to_i
+            if player_choice.between?(1..9)
+              if cell_playable ?
+                if current_player.player_team == "X"
+                cell[choice].value = "X"
+                else
+                cell[choice].value = "O"
+                end
+              else 
+                "This case already been played"
+              end
+            else
+              "Please input a case btween 1..9"
+            end
 
-# Player_choice = 1..9
-# if cell playable ?
-#  if current_player.player_team == "X"
-#   @cell[choice (between 1..9)].value = "X"
-#  else 
-#   @cell[choice].value = "O"
-#  end
-# else
-# Choose another cell 
-# Repeat method
 
+            def cell_playable?(cell)                                                            # Regarde si la cell est deja modifiée
+              if cell[player_choice].value == "Y" || cell[player_choice].value == "O"
+                return false
+                else
+                return true
+              end
+            end
+   
+                                              # Player_choice = 1..9
+                                              # if cell playable ?
+                                              #  if current_player.player_team == "X"
+                                              #   @cell[choice (between 1..9)].value = "X"
+                                              #  else 
+                                              #   @cell[choice].value = "O"
+                                              #  end
+                                              # else
+                                              # Choose another cell 
+                                              # Repeat method
+          
 
-
-# cell playable ?
-# -> cell value different from X / O ?
-# -> Cell free
-# -> Else -> cell not free
-
+                                              # cell playable ?
+                                              # -> cell value different from X / O ?
+                                              # -> Cell free
+                                              # -> Else -> cell not free
   end
                          
 
