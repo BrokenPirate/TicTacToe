@@ -1,5 +1,5 @@
 class Game
-  def initialize
+  
     #TO DO : créé 2 joueurs, créé un board
     
       def initialize
@@ -20,7 +20,7 @@ class Game
      end
     
     
-  end
+ 
 
   def go
     # TO DO : lance la partie
