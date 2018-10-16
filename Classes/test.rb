@@ -34,10 +34,67 @@ end
         puts "taken, takeanother"
         choice = (gets.chomp).to_i
         self.set_case_value(choice, current_player.player_team, current_player)
+      end
     end
 
 
-  def play(choice, team)
+
+  def go
+    # TO DO : lance la partie
+    @board_game.victory? == false
+    puts @board_game.victory?
+    puts "Let's go !"
+    puts "It's #{@current_player.player_name} turn!" 
+    @board_game.victory?
+    puts @board_game.victory?
+    if @board_game.victory? == true
+      puts "there is a winner"
+    else
+      count = 0
+        while count < 9
+          if count == 8
+            puts @board_game.victory?
+            binding.pry
+          end
+          turn
+          count += 1
+          
+        end                                                                         # Win du player 1, break de la loop si besoin et affiche la board finie
+      end
+  end
+
+
+    def go
+    # TO DO : lance la partie
+      puts "Let's go!"
+      puts "It's #{@current_player.player_name} turn!" 
+      count = 0
+      while @board_game.victory != true
+        for count in 1..9
+          turn
+          count +=1
+          puts @board_game.victory?
+        end
+      else
+            "Winner!"
+      end
+
+
+
+    end
+
+
+
+
+
+
+
+
+
+
+
+
+def play(choice, team)
     #TO DO : une méthode qui change la BoardCase jouée en fonction de la valeur du joueur (X, ou O)
         def cell_playable?(player_choice)                                                            # Regarde si la cell est deja modifiée
                   if cells[player_choice].value == "Y" || cells[player_choice].value == "O"
@@ -58,3 +115,5 @@ end
           "The value of this cell is alrady #{cell[choice].value}"
         end
   end
+
+  

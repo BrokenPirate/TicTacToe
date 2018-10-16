@@ -62,7 +62,7 @@ class Board
             def set_case_value(choice, team, current_player)
       if cell_playable?(choice)
        # if current_player = @player1
-                      cells[choice].value = team
+                      @cells[choice].value = team
                   #  else
                   #    cells[choice-1].value = team
                   #  end
@@ -82,30 +82,54 @@ end
 
   end
 
-  def victory
+  def victory?
 
-    if @cells[0].value == @cells[1].value && @cells[1].value == @cells[2].value
+    if cells[1].value == cells[2].value && cells[2].value == cells[3].value
+        cells[1].value = cells[1].value.green
+          cells[2].value = cells[2].value.green
+            cells[3].value = cells[3].value.green
+      return true 
+
+    elsif cells[4].value == cells[5].value && cells[5].value == cells[6].value
+        cells[4].value = cells[4].value.green
+          cells[5].value = cells[5].value.green
+            cells[6].value = cells[6].value.green
       return true
 
-    elsif @cells[3].value == @cells[4].value && @cells[4].value == @cells[5].value
+    elsif cells[7].value == cells[8].value && cells[8].value == cells[9].value 
+        cells[7].value = cells[7].value.green
+          cells[8].value = cells[8].value.green
+            cells[9].value = cells[9].value.green
       return true
 
-    elsif @cells[6].value == @cells[7].value && @cells[7].value == @cells[8].value
+    elsif cells[1].value == cells[4].value && cells[4].value == cells[7].value
+        cells[1].value = cells[1].value.green
+          cells[4].value = cells[4].value.green
+            cells[7].value = cells[7].value.green
       return true
 
-    elsif @cells[0].value == @cells[3].value && @cells[3].value == @cells[6].value
+    elsif cells[2].value == cells[5].value && cells[5].value == cells[8].value
+        cells[2].value = cells[2].value.green
+          cells[5].value = cells[5].value.green
+            cells[8].value = cells[8].value.green
       return true
 
-    elsif @cells[1].value == @cells[4].value && @cells[4].value == @cells[7].value
+    elsif cells[3].value == cells[6].value && cells[6].value == cells[9].value
+        cells[3].value = cells[3].value.green
+          cells[6].value = cells[6].value.green
+            cells[9].value = cells[9].value.green
       return true
 
-    elsif @cells[2].value == @cells[5].value && @cells[5].value == @cells[8].value
+    elsif cells[3].value == cells[5].value && cells[5].value == cells[7].value
+        cells[2].value = cells[2].value.green
+          cells[4].value = cells[4].value.green 
+            cells[6].value = cells[6].value.green
       return true
 
-    elsif @cells[2].value == @cells[4].value && @cells[4].value == @cells[6].value
-      return true
-
-    elsif @cells[0].value == @cells[4].value && @cells[4].value == @cells[8].value
+    elsif cells[1].value == cells[5].value && cells[5].value == cells[9].value
+        cells[1].value = cells[1].value.green
+          cells[5].value = cells[5].value.green
+            cells[9].value = cells[9].value.green
       return true
 
     end
