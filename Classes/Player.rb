@@ -7,10 +7,11 @@ class Player
   
     #TO DO : doit régler son nom, sa valeur, son état de victoire
 
-    def initialize(player_name, player_team)
+    def initialize(player_name, team)
 
     	@player_name = gets.chomp
     	@player_team = ""
+    	
 
     end
 

@@ -22,7 +22,9 @@ class Board
     cell_7 = BoardCase.new(7, "7")
     cell_8 = BoardCase.new(8, "8")
     cell_9 = BoardCase.new(9, "9")
-    @cells = [cell_1, cell_2, cell_3, cell_4, cell_5, cell_6, cell_7, cell_8, cell_9]
+    cell_10 = cell_9
+    @cells = [cell_1, cell_2, cell_3, cell_4, cell_5, cell_6, cell_7, cell_8, cell_9, cell_10]
+
 
 
   end
@@ -44,28 +46,43 @@ class Board
 
   end
 
-  def play(player_choice, team)
+  def play(choice, team, current_player)
     #TO DO : une méthode qui change la BoardCase jouée en fonction de la valeur du joueur (X, ou O)
-        def cell_playable?(player_choice)                                                            # Regarde si la cell est deja modifiée
-                  if cells[player_choice].value == "Y" || cells[player_choice].value == "O"
+        
+        @choice = choice.to_i
+
+        def cell_playable?(choice)                                                            # Regarde si la cell est deja modifiée
+                  if cells[choice].value == "X" || cells[choice].value == "O"
                     return false
                     else
                     return true
                   end
         end
 
-        if cell_playable == true 
-                    if team == "X"
-                      cell[player_choice].value = "X"
-                    else
-                      cell[player_choice].value = "O"
-                    end
-        else
-          "The value of this cell is alrady #{cell[choice].value}"
-        end
+            def set_case_value(choice, team, current_player)
+      if cell_playable?(choice)
+       # if current_player = @player1
+                      cells[choice-1].value = team
+                  #  else
+                  #    cells[choice-1].value = team
+                  #  end
+      else
+        puts "taken, takeanother"
+        choice = (gets.chomp).to_i
+        self.set_case_value(choice, team, current_player)
+      end
+    end
+
+          def get_player_choice(choice, team, current_player)
+  self.set_case_value(choice, team, current_player)
+end
+
+
+
+
   end
 
-  def victory?                                                               # Recense toutes les conditions de victoire (8 au total)
+  def victory
 
     if @cells[0].value == @cells[1].value && @cells[1].value == @cells[2].value
       return true
