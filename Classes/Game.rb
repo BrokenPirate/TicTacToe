@@ -11,6 +11,7 @@ class Game
             puts "#{@player2.player_name} will play O"
             
             @board_game = Board.new
+   			choice = @board_game.choice
             @current_player = @player1
             @player1.player_team = "X"
             @player2.player_team = "O"
@@ -35,10 +36,9 @@ class Game
 
  	loop do 
  	team = @current_player.player_team
- 	player_choice = gets.chomp.to_i
-
+ 	choice = gets.chomp.to_i
  	if player_choice.between?(1,9)
- 		play(player_choice, team) # @current_player, @current_player.player_team)
+
  	else
  		puts "Choose an available case between 1 and 9"
  	end
