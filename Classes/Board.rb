@@ -12,6 +12,10 @@ class Board
     #TO DO :
     #Quand la classe s'initialize, elle doit créer 9 instances BoardCases
     #Ces instances sont rangées dans une array qui est l'attr_accessor de la classe
+
+    # Pourquoi 10 cases ? -> Dans le hash @cells, la case 1 a pour index 0, la case 9 a pour index 8
+    # En ajoutant les cases 0 et 10, la case 1 a pour index 1 et la 9 a pour index 9
+
     cell_0 = BoardCase.new(0, "nil")
     cell_1 = BoardCase.new(1, "1")
     cell_2 = BoardCase.new(2, "2")
@@ -32,17 +36,17 @@ class Board
   def show
   #TO DO : afficher le plateau
 
-  
-    puts "\n     |     |     "
-    puts "  #{cells[1].value}  |  #{cells[2].value}  |  #{cells[3].value}  "
-    puts "_____|_____|_____"
-    puts "     |     |     "
-    puts "  #{cells[4].value}  |  #{cells[5].value}  |  #{cells[6].value}  "
-    puts "_____|_____|_____"
-    puts "     |     |     "
-    puts "  #{cells[7].value}  |  #{cells[8].value}  |  #{cells[9].value}  "
-    puts "     |     |     "
-
+    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    puts "\n       |     |     "
+    puts "    #{cells[1].value}  |  #{cells[2].value}  |  #{cells[3].value}  "
+    puts "  _____|_____|_____"
+    puts "       |     |     "
+    puts "    #{cells[4].value}  |  #{cells[5].value}  |  #{cells[6].value}  "
+    puts "  _____|_____|_____"
+    puts "       |     |     "
+    puts "    #{cells[7].value}  |  #{cells[8].value}  |  #{cells[9].value}  "
+    puts "       |     |     "
+    puts "  \n\n"
 
   end
 
@@ -51,7 +55,8 @@ class Board
         
         @choice = choice.to_i
 
-        def cell_playable?(choice)                                                            # Regarde si la cell est deja modifiée
+        # verifie que la case est libre, renvoi un boolean
+        def cell_playable?(choice)                                                            
                   if cells[choice].value == "X" || cells[choice].value == "O"
                     return false
                     else
@@ -59,23 +64,32 @@ class Board
                   end
         end
 
-            def set_case_value(choice, team, current_player)
-      if cell_playable?(choice)
-       # if current_player = @player1
-                      @cells[choice].value = team
-                  #  else
-                  #    cells[choice-1].value = team
-                  #  end
-      else
-        puts "taken, takeanother"
-        choice = (gets.chomp).to_i
-        self.set_case_value(choice, team, current_player)
-      end
-    end
 
-          def get_player_choice(choice, team, current_player)
-  self.set_case_value(choice, team, current_player)
-end
+            def change_cell_value(choice, team, current_player)
+              # Si la case est jouable
+                if cell_playable?(choice)
+                      # dans la methode turn, je défini que team = current_player.player_team (assigné X ou O)
+                      # on incrémente la valeur de team dans la case choisie
+                      # Si current_player.player_team = X -> Jouer X sur la case choisi en bleu  
+                    if team == "X"
+                         @cells[choice].value = team.blue
+                    else # sinon jouer O en rouge
+                        @cells[choice].value = team.red  
+                    end 
+                  #   ce qu'on ferais sans 10 cases mais 8 -> cells[choice-1].value = team
+                  
+                else # Si la case n'est pas jouable
+                  puts "taken, choose another"
+                  choice = (gets.chomp).to_i
+                  self.change_cell_value(choice, team, current_player)
+                end
+            end
+
+
+            # Lance la méthode
+            change_cell_value(choice, team, current_player)
+
+ 
 
 
 
@@ -83,7 +97,8 @@ end
   end
 
   def victory?
-
+# Défini toutes les conditions de victoires possible, si la valeur de 3 cellules déterminées sont égales -> victoire
+# Si la condition est vérifié, colorié les cases concernées en vert
     if cells[1].value == cells[2].value && cells[2].value == cells[3].value
         cells[1].value = cells[1].value.green
           cells[2].value = cells[2].value.green

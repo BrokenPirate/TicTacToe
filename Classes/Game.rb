@@ -74,9 +74,9 @@ class Game
  	
  	if choice.between?(1, 9)
  		@board_game.play(choice, team, current_player)
- 		@board_game.get_player_choice(choice, team, current_player)
  	else
  		puts "Choose an available case between 1 and 9"
+ 		choice = gets.chomp.to_i
  	end
 
 
@@ -90,12 +90,15 @@ class Game
   end
 
   def rematch
-  		puts "Try again ? Y/N"                                                                  # Propose un nouveau jeu en gardant en mémoire les points
+  		puts "Try again ? Y/N"                                                                  
     choice = (gets.chomp).to_s.capitalize
-    if choice == "Y"                                                                        # Si oui, RAZ de la board, et passage de la précédente victoire si présente à false
+    if choice == "Y"       # Si Y -> Recommencer un board                                                                
       @board_game.victory? == true
       @board_game = Board.new
       self.go
+      # Change de joueur qui commence
+      @current_player == @player1 ? @current_player = @player2 : @current_player = @player1
+
     else
     	puts "Fin du jeu - #{@player1.player_name} : #{@player1.player_points} - VS -  #{@player2.player_name} : #{@player2.player_points}"
     end
