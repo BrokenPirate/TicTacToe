@@ -30,7 +30,7 @@ class Game
     while count < 9
     turn
     count += 1
-    	if @@victory                                                                          # Win du player 1, break de la loop si besoin et affiche la board finie
+    	if @victory                                                                          # Win du player 1, break de la loop si besoin et affiche la board finie
         puts "\nThere is a winner :"
         @board_game.show
         puts "\nGood game #{@player1.player_name} !"
@@ -43,7 +43,7 @@ class Game
   def turn
     #TO DO : affiche le plateau, demande au joueur il joue quoi, vérifie si un joueur a gagné, passe au joueur suivant si la partie n'est pas finie
  	
-	loop do    
+	   
  	@board_game.show	
  	team = @current_player.player_team
  	current_player = @current_player
@@ -63,10 +63,9 @@ class Game
  
  	@current_player == @player1 ? @current_player = @player2 : @current_player = @player1
  	team = @current_player.player_team
-	puts team
+	
 
- 	break if @victory
-	end
+ 	
 
   end
 
