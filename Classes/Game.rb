@@ -14,8 +14,8 @@ class Game
             
             @board_game = Board.new
             @current_player = @player1
-            @player1.player_team = "X"
-            @player2.player_team = "O"
+            @player1.player_team = "X".blue
+            @player2.player_team = "O".red
             @victory == false
             @player1.player_points = 0
             @player2.player_points = 0

@@ -57,7 +57,7 @@ class Board
 
         # verifie que la case est libre, renvoi un boolean
         def cell_playable?(choice)                                                            
-                  if cells[choice].value == "X" || cells[choice].value == "O"
+                  if cells[choice].value.include?("X") || cells[choice].value.include?("O")
                     return false
                     else
                     return true
@@ -71,11 +71,11 @@ class Board
                       # dans la methode turn, je défini que team = current_player.player_team (assigné X ou O)
                       # on incrémente la valeur de team dans la case choisie
                       # Si current_player.player_team = X -> Jouer X sur la case choisi en bleu  
-                    if team == "X"
-                         @cells[choice].value = team.blue
-                    else # sinon jouer O en rouge
-                        @cells[choice].value = team.red  
-                    end 
+                    # if current_player.player_team == "X"
+                         @cells[choice].value = team #.blue
+                   # else # sinon jouer O en rouge
+                      #  @cells[choice].value = team.red  
+                  #  end 
                   #   ce qu'on ferais sans 10 cases mais 8 -> cells[choice-1].value = team
                   
                 else # Si la case n'est pas jouable
