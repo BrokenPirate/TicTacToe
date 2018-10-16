@@ -44,10 +44,10 @@ class Board
 
   end
 
-  def play
+  def play(player_choice, team)
     #TO DO : une méthode qui change la BoardCase jouée en fonction de la valeur du joueur (X, ou O)
-        def cell_playable?(cell)                                                            # Regarde si la cell est deja modifiée
-                  if cell[player_choice].value == "Y" || cell[player_choice].value == "O"
+        def cell_playable?(player_choice)                                                            # Regarde si la cell est deja modifiée
+                  if cells[player_choice].value == "Y" || cells[player_choice].value == "O"
                     return false
                     else
                     return true
@@ -55,10 +55,10 @@ class Board
         end
 
         if cell_playable == true 
-                    if current_player.player_team == "X"
-                      cell[choice].value = "X"
+                    if team == "X"
+                      cell[player_choice].value = "X"
                     else
-                      cell[choice].value = "O"
+                      cell[player_choice].value = "O"
                     end
         else
           "The value of this cell is alrady #{cell[choice].value}"

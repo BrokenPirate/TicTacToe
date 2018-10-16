@@ -32,14 +32,20 @@ class Game
   def turn
     #TO DO : affiche le plateau, demande au joueur il joue quoi, vérifie si un joueur a gagné, passe au joueur suivant si la partie n'est pas finie
  	
- 	while victory? != true
- 	@choice = gets.chomp.to_i
- 	if @choice.between?(1..9)
- 		play(@choice, @current_player, @current_player.player_team)
+
+ 	loop do 
+ 	team = @current_player.player_team
+ 	player_choice = gets.chomp.to_i
+
+ 	if player_choice.between?(1,9)
+ 		play(player_choice, team) # @current_player, @current_player.player_team)
  	else
  		puts "Choose an available case between 1 and 9"
  	end
+
  	@current_player == @player1 ? @current_player = @player2 : @current_player = @player1
+
+ 	break if victory? == true
 	end
 
   end
